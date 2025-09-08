@@ -1,6 +1,6 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
-import { v4 as uuid } from 'uuid';
+import { nanoid } from 'nanoid';
 
 import { createTask } from './utils/dynamodb';
 
@@ -20,21 +20,21 @@ export const handler: APIGatewayProxyHandler = async (event) => {
       };
     }
 
-    const id = uuid();
+    const taskId = nanoid();
 
-    await createTask({ id, answer });
+    await createTask({ taskId, answer });
 
     await sqs.send(new SendMessageCommand({
       QueueUrl: TASKS_QUEUE_URL,
-      MessageBody: JSON.stringify({ id }),
+      MessageBody: JSON.stringify({ taskId }),
     }));
 
-    console.log('Task submitted:', { id });
+    console.log('Task submitted:', { taskId });
 
     return {
       statusCode: 200,
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ taskId }),
     };
   } catch (err: any) {
     console.error('submitTask failed', err);

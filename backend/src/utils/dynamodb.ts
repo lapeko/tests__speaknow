@@ -28,19 +28,19 @@ export const createTask = async (item: Omit<Task, "status" | "retries" | "create
   }));
 };
 
-export const getTask = async (id: string): Promise<Task | undefined> => {
+export const getTask = async (taskId: string): Promise<Task | undefined> => {
   const result = await client.send(new GetCommand({
     TableName: TASKS_TABLE,
-    Key: { id },
+    Key: { taskId },
   }));
 
   return result.Item as Task | undefined;
 };
 
-export const markProcessed = async (id: string) => {
+export const markProcessed = async (taskId: string) => {
   await client.send(new UpdateCommand({
     TableName: TASKS_TABLE,
-    Key: { id },
+    Key: { taskId },
     UpdateExpression: "SET #status = :s",
     ExpressionAttributeNames: {
       "#status": "status",
@@ -51,10 +51,10 @@ export const markProcessed = async (id: string) => {
   }));
 };
 
-export const markFailed = async (id: string, message: string) => {
+export const markFailed = async (taskId: string, message: string) => {
   await client.send(new UpdateCommand({
     TableName: TASKS_TABLE,
-    Key: { id },
+    Key: { taskId },
     UpdateExpression: "SET #status = :s, #errorMessage = :e",
     ExpressionAttributeNames: {
       "#status": "status",
@@ -67,10 +67,10 @@ export const markFailed = async (id: string, message: string) => {
   }));
 };
 
-export const incrementRetries = async (id: string) => {
+export const incrementRetries = async (taskId: string) => {
   await client.send(new UpdateCommand({
     TableName: TASKS_TABLE,
-    Key: { id },
+    Key: { taskId },
     UpdateExpression: "ADD #retries :inc",
     ExpressionAttributeNames: {
       "#retries": "retries",

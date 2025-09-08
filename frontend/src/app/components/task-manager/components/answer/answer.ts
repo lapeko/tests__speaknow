@@ -1,4 +1,4 @@
-import { AnswerService } from 'src/app/services/answer';
+import { AnswerService } from 'src/app/services/answer.service';
 import { Component, inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

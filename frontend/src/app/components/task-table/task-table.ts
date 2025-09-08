@@ -24,7 +24,7 @@ export class TaskTable {
   loading$ = this.store.select(TaskState.loading);
   tasks$ = this.store.select(TaskState.tasks);
 
-  displayedColumns: (keyof Task | 'actions')[] = ['id', 'answer', 'status', 'retries', 'errorMessage', 'actions'];
+  displayedColumns: (keyof Task | 'actions')[] = ['taskId', 'answer', 'status', 'retries', 'errorMessage', 'actions'];
 
   refresh() {
     this.store.dispatch(FetchTasks);

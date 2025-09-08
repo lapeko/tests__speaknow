@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngxs/store';
-import { AnswerService } from 'src/app/services/answer';
+import { AnswerService } from 'src/app/services/answer.service';
 import { TaskState } from 'src/app/state/task.state';
 import { toSignal } from '@angular/core/rxjs-interop';
 

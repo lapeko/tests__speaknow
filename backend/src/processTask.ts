@@ -10,32 +10,32 @@ export const handler = async (event: SQSEvent): Promise<SQSBatchResponse> => {
 
     try {
       const body = JSON.parse(record.body);
-      const id = body.id;
+      const taskId = body.taskId;
 
-      if (!id)
-        throw new Error('Missing id in message body');
+      if (!taskId)
+        throw new Error('Missing taskId in message body');
 
-      console.log(`Processing id: ${id}`);
+      console.log(`Processing taskId: ${taskId}`);
 
-      const task = await getTask(id);
+      const task = await getTask(taskId);
 
       if (!task)
-        throw new Error(`Task not found: ${id}`);
+        throw new Error(`Task not found: ${taskId}`);
 
       try {
-        await incrementRetries(id);
+        await incrementRetries(taskId);
       } catch (e) {
-        console.error(`Failed to increment retries for ${id}`, e);
+        console.error(`Failed to increment retries for ${taskId}`, e);
       }
 
       if (Math.random() < 0.3) {
-        console.warn(`Simulated failure for id: ${id}`);
+        console.warn(`Simulated failure for taskId: ${taskId}`);
         throw new Error('Simulated task failure');
       }
 
-      await markProcessed(id);
+      await markProcessed(taskId);
 
-      console.log(`Task ${id} processed successfully`);
+      console.log(`Task ${taskId} processed successfully`);
 
     } catch (err) {
       console.error(`Failed to process message ${messageId}`, err);

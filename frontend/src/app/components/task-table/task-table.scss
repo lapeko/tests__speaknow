@@ -3,6 +3,7 @@
 :host {
     display: block;
     @include main-component;
+    max-height: calc(100vh - 4rem);
 }
 
 mat-spinner {
@@ -10,4 +11,10 @@ mat-spinner {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.scroll-container {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0.5rem;
 }

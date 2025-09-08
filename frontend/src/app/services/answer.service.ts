@@ -11,7 +11,9 @@ export class AnswerService {
   private store = inject(Store);
 
   submitAnswer() {
-    this.store.dispatch(new SubmitTask({ answer: this.answer().trim() }))
+    const text = this.answer().trim();
+    if (!text) return;
+    this.store.dispatch(new SubmitTask({ answer: text }))
     this.answer.set("");
   }
 }

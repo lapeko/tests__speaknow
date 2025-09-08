@@ -5,7 +5,7 @@ export enum TaskStatus {
 }
 
 export type Task = {
-  id: string;
+  taskId: string;
   answer: string;
   status: TaskStatus;
   retries: number;

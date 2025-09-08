@@ -7,18 +7,18 @@ export const handler = async (event: SQSEvent) => {
   for (const record of event.Records) {
     try {
       const body = JSON.parse(record.body);
-      const id = body.id;
+      const taskId = body.taskId;
 
-      if (!id) {
-        console.warn('Missing id in DLQ message');
+      if (!taskId) {
+        console.warn('Missing taskId in DLQ message');
         continue;
       }
 
-      console.warn(`Handling DLQ for id: ${id}`);
+      console.warn(`Handling DLQ for taskId: ${taskId}`);
 
-      await markFailed(id, 'Too many retry attempts');
+      await markFailed(taskId, 'Too many retry attempts');
 
-      console.log(`Task ${id} marked as ${TaskStatus.Failed}`);
+      console.log(`Task ${taskId} marked as ${TaskStatus.Failed}`);
 
     } catch (err) {
       console.error('DLQ handler failed for record:', record, err);
