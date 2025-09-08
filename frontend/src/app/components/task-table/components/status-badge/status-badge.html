@@ -1,0 +1,11 @@
+@switch (status()) {
+@case(TaskStatus.Pending) {
+<div class="chip chip-pending"><mat-icon>schedule</mat-icon> Pending</div>
+}
+@case(TaskStatus.Processed) {
+<div class="chip chip-processed"><mat-icon>task_alt</mat-icon> Processed</div>
+}
+@case(TaskStatus.Failed) {
+<div class="chip chip-failed"><mat-icon>block</mat-icon> Failed</div>
+}
+}

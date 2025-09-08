@@ -1,0 +1,6 @@
+@use "mixins" as *;
+
+:host {
+    @include sub-component;
+    flex: 1;
+}

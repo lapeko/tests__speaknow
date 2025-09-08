@@ -1,0 +1,13 @@
+@use "mixins" as *;
+
+:host {
+    display: block;
+    @include main-component;
+}
+
+mat-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,24 @@
+@use "variables" as *;
+
+@mixin desktop {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin main-component {
+    background-color: $light-gray;
+    border-radius: 1rem;
+    padding: 1rem;
+    position: relative;
+}
+
+@mixin sub-component {
+    background-color: $white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}

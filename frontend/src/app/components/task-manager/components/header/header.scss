@@ -1,0 +1,9 @@
+@use "mixins" as *;
+
+:host {
+    @include sub-component;
+}
+
+.school {
+    padding-right: 1rem;
+}

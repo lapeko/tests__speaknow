@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+:host {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: $white;
+    margin: 0 -1rem;
+    padding: 1rem;
+}

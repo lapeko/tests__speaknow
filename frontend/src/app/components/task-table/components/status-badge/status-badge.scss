@@ -1,0 +1,28 @@
+@use "variables" as *;
+
+.chip {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+
+    &-pending {
+        color: $blue;
+        background-color: $light-blue;
+    }
+
+    &-processed {
+        color: $green;
+        background-color: $light-green;
+    }
+
+    &-failed {
+        color: $red;
+        background-color: $light-red;
+    }
+}
+
+mat-icon {
+    margin-right: 0.5rem;
+}

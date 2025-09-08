@@ -1,0 +1,23 @@
+@use "mixins" as *;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #2a3bbd, #0c134f);
+}
+
+main {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: 1fr;
+    flex: 1;
+    gap: 1rem;
+    padding: 1rem;
+
+    @include desktop {
+        grid-template-columns: 1fr 2fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+}

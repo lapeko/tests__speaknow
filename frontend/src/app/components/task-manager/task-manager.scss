@@ -1,0 +1,13 @@
+@use "mixins" as *;
+
+:host {
+    @include main-component;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+:not(:last-child) {
+    margin-bottom: 1rem;
+}
