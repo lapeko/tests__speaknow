@@ -47,7 +47,7 @@ Then open `http://localhost:4200/` in your browser.
 Implemented features:
 
 Frontend:
-- Form to submit a task answer (with auto-generated taskId)
+- Form to submit a task answer (taskId generated on BE side)
 - Task dashboard showing taskId, answer, status (Pending, Processed, Failed), retry count, and error message (if any)
 - Visual feedback during submission
 - Mobile-first responsive layout
@@ -57,7 +57,7 @@ Backend:
 - REST API via API Gateway + Lambda (`/tasks` POST and GET)
 - Asynchronous task processing using SQS + Lambda
 - Randomized task failure simulation (30%)
-- Retry mechanism with exponential backoff (up to 2 attempts)
+- Retry mechanism with exponential backoff (up to 2 attempts to retry)
 - Dead Letter Queue (DLQ) for failed tasks
 - DLQ monitor Lambda that logs to CloudWatch
 - DynamoDB stores: taskId, answer, status, retries, errorMessage
